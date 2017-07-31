@@ -35,19 +35,22 @@ By choosing different topic for different http methods we can actually configure
 Will use timestamp as the key for partitioning, so that the records with same timestamp goes to one partition for a particular topic, Here timestamp is only till minutes for eg. 16:40:09, 16:40:00, 16:40:59 will be all mapped to the timestamp 16:40 and that will be the key for partition. There consumer can fetch them in batch and aggregate it. 
 
 #### How data is saved in mongo
+datetime, http_method, count
 
 
 ##### Why kafka
-1. Highly distributed system
-2. High Availability
+1. Highly distributed system - can scale horizontally
+2. High Availability, High throughput
 3. Act as storage as well
 4. Consumer and Producer can enter and exit the system without impacting
 5. Reliable as it provides inbuilt replication follows the follower and leader philosphy
  
 
 ##### Why mongodb
-1. Distributed System with automatic shards
-2. High Write Capability - works on eventual consistency
+1. Distributed System with automatic scaling with auto-sharding
+2. High Write Capability, Highly available
+3. Schema free
+4. Aggregation pipeline which is suited for analytics
 
 ### How to run?
 Install go, java and Please follow the below instructions.
