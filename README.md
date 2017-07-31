@@ -13,29 +13,29 @@ Write a demo code to demonstrate your design.
 
 ## Solution
 
-#### Tools Used
+### Tools Used
 1. kakfa
 2. mongodb
 3. java programming language
 
-#### Architecture Diagram
+### Architecture Diagram
 ![Image of Yaktocat](https://github.com/Parteek/LogRealTimeAnalytics/blob/master/design_architecture.jpg)
 
-#### Detailed Description
+### Detailed Description
 
-##### why we are processing the same event/logs twice?
+#### why we are processing the same event/logs twice?
 
-##### zookeeper 
+#### zookeeper 
 open source, high performance coordintation service for distributed applications
 
-##### why choose http method as different topic
+#### why choose http method as different topic
 
-##### explain about partitions
+#### explain about partitions
 
 
-##### How data is saved in mongo
+#### How data is saved in mongo
 
-###### Why kafka
+##### Why kafka
 1. Highly distributed system
 2. High Availability
 3. Act as storage as well
@@ -43,29 +43,29 @@ open source, high performance coordintation service for distributed applications
 5. Reliable as it provides inbuilt replication follows the follower and leader philosphy
  
 
-###### Why mongodb
+##### Why mongodb
 1. Distributed System with automatic shards
 2. High Write Capability - works on eventual consistency
 
-#### How to run?
+### How to run?
 Install go, java and Please follow the below instructions.
 
-###### Download and install kafka
+#### Download and install kafka
 kafka(https://kafka.apache.org/quickstart)
 
-###### Start zookeeper
+#### Start zookeeper
 ```
 cd kakfa_directory/
 bin/zookeeper-server-start.sh config/zookeeper.properties
 ```
 
-###### Start kafka
+#### Start kafka
 ```
 cd kakfa_directory/
 bin/kafka-server-start.sh config/server.properties
 ```
 
-###### Create Topics for kafka
+#### Create Topics for kafka
 ```
 cd kakfa_directory/
 bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic logs
@@ -75,26 +75,26 @@ bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 -
 bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 3 --topic delete
 ```
 
-###### To add sample logs
+#### To add sample logs
 ```
 ./producer/log-emitter-ubuntu  > console.log
 ```
 
-###### To start producer
+#### To start producer
 ```
 cd kakfa_directory/
 tail -n 0 -f ../producer/console.log | bin/kafka-console-producer.sh  --broker-list localhost:9092 --topic logs
 ```
 
 
-###### Start Log consumer
+#### Start Log consumer
 ```
 cd consumer/
 javac -cp "/projects/others/kafka/kafka_2.11-0.11.0.0/libs/*" ConsumerGroup.java
 java -cp "/projects/others/kafka/kafka_2.11-0.11.0.0/libs/*":. ConsumerGroup logs loggroup
 ```
 
-###### Start Http consumer
+#### Start Http consumer
 ```
 cd consumer/
 javac -cp "/projects/others/kafka/kafka_2.11-0.11.0.0/libs/*" HttpConsumerGroup.java
