@@ -24,16 +24,18 @@ Write a demo code to demonstrate your design.
 ### Detailed Description
 
 #### why we are processing the same event/logs twice?
+First time we are pushing the log as event with no parsing, just dumping the log as it is so that in future, if we want to consume that data in different way we can just replay the same stream again.
 
-#### zookeeper 
-open source, high performance coordintation service for distributed applications
+Second time we are pushing the log as event with proper topic and paritioning, so that we can aggregate the data in much more efficient and scalable manner.
 
 #### why choose http method as different topic
+By choosing different topic for different http methods we can actually configure the no of partitions based on the scale of the different http methods, in normal scenario for most of the systems the get calls are more than the other calls and similarly delete calls being the minimum so we can have more nodes for get calls and less nodes for delete. 
 
 #### explain about partitions
-
+Will use timestamp as the key for partitioning, so that the records with same timestamp goes to one partition for a particular topic, Here timestamp is only till minutes for eg. 16:40:09, 16:40:00, 16:40:59 will be all mapped to the timestamp 16:40 and that will be the key for partition. There consumer can fetch them in batch and aggregate it. 
 
 #### How data is saved in mongo
+
 
 ##### Why kafka
 1. Highly distributed system
